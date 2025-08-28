@@ -1,6 +1,6 @@
 ﻿using Xunit;
 using PasswordCheck;
-using System.Threading.Channels;
+
 
 
 namespace PasswordCheck.Tests
@@ -21,68 +21,77 @@ namespace PasswordCheck.Tests
         public void OnlyLowercase_ReturnsWeak()
         {
             var check = new Password();
-            Assert.Equal("WEAK", check.StrengthCheck("abc"));
+            Assert.Equal("WEAK", check.StrengthCheck("abcdefgh"));
         }
         [Fact]
         public void OnlyUppercase_ReturnsWeak()
         {
             var check = new Password();
-            Assert.Equal("WEAK", check.StrengthCheck("ABC"));
+            Assert.Equal("WEAK", check.StrengthCheck("ABCDEFGH"));
         }
         [Fact]
         public void OnlyDigits_ReturnsWeak()
         {
             var check = new Password();
-            Assert.Equal("WEAK", check.StrengthCheck("123"));
+            Assert.Equal("WEAK", check.StrengthCheck("12345678"));
         }
         [Fact]
         public void OnlySymbols_ReturnsWeak()
         {
             var check = new Password();
-            Assert.Equal("WEAK", check.StrengthCheck("@#$"));
+            Assert.Equal("WEAK", check.StrengthCheck("@#$%^&*!"));
         }
         [Fact]
         public void LowercaseAndUppercase_ReturnsMedium()
         {
             var check = new Password();
-            Assert.Equal("MEDIUM", check.StrengthCheck("aBc"));
+            Assert.Equal("MEDIUM", check.StrengthCheck("abcdEFGH"));
         }
         [Fact]
         public void LowercaseAndDigits_ReturnsMedium()
         {
             var check = new Password();
-            Assert.Equal("MEDIUM", check.StrengthCheck("a1b2c3"));
+            Assert.Equal("MEDIUM", check.StrengthCheck("abcd1234"));
         }
         [Fact]
         public void LowercaseAndSymbols_ReturnsMedium()
         {
             var check = new Password();
-            Assert.Equal("MEDIUM", check.StrengthCheck("a@b#c$"));
+            Assert.Equal("MEDIUM", check.StrengthCheck("abcd!@#$"));
         }
         [Fact]
         public void UppercaseAndDigits_ReturnsMedium()
         {
             var check = new Password();
-            Assert.Equal("MEDIUM", check.StrengthCheck("A1B2C3"));
+            Assert.Equal("MEDIUM", check.StrengthCheck("ABCD1234"));
         }
         [Fact]
         public void UppercaseAndSymbols_ReturnsMedium()
         {
             var check = new Password();
-            Assert.Equal("MEDIUM", check.StrengthCheck("A@B#C$"));
+            Assert.Equal("MEDIUM", check.StrengthCheck("ABCD!@#$"));
         }
 
         [Fact]
         public void AllCriteriaMet_ReturnsStrong()
         {
             var check = new Password();
-            Assert.Equal("STRONG", check.StrengthCheck("Abcdef1!"));
+            Assert.Equal("STRONG", check.StrengthCheck("Abc123!@"));
+        }
+    [Fact]
+        public void PasswordTooShort_ShouldBeIneligible()
+        {
+        var check = new Password();
+        Assert.Equal("INELIGABLE", check.StrengthCheck("abc123")); // too short
+        Assert.Equal("INELIGABLE", check.StrengthCheck("Abc12!")); // too short
         }
 
-        
-
-
-
+    [Fact]
+        public void PasswordLongEnoughAndStrong_ShouldBeStrong()
+        {
+            var check = new Password();
+            Assert.Equal("STRONG", check.StrengthCheck("Abc123!@"));
+        }
     }
 }
 
