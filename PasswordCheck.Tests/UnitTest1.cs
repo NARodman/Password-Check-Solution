@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using PasswordCheck;
+using System.Threading.Channels;
 
 
 namespace PasswordCheck.Tests
@@ -70,13 +71,15 @@ namespace PasswordCheck.Tests
             var check = new Password();
             Assert.Equal("MEDIUM", check.StrengthCheck("A@B#C$"));
         }
-        
+
         [Fact]
         public void AllCriteriaMet_ReturnsStrong()
         {
             var check = new Password();
-            Assert.Equal("STRONG", check.StrengthCheck("Abc1!"));
+            Assert.Equal("STRONG", check.StrengthCheck("Abcdef1!"));
         }
+
+        
 
 
 
