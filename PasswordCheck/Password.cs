@@ -42,6 +42,8 @@ namespace PasswordCheck
             else
                 return "STRONG";
 
+                
+
 
         }
 
