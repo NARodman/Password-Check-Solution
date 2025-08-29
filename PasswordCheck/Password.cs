@@ -14,6 +14,9 @@ namespace PasswordCheck
             if (string.IsNullOrEmpty(password))
                 return "INELIGABLE";
 
+            if (password.Length < 8)
+                    return "INELIGABLE";
+
             bool hasUpper = false;
             bool haslower = false;
             bool hasDigit = false;
@@ -41,6 +44,8 @@ namespace PasswordCheck
                 return "MEDIUM";
             else
                 return "STRONG";
+
+                
 
 
         }
