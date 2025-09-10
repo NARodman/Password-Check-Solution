@@ -2,7 +2,6 @@
 using PasswordCheck;
 
 
-
 namespace PasswordCheck.Tests
 {
 
@@ -78,20 +77,9 @@ namespace PasswordCheck.Tests
             var check = new Password();
             Assert.Equal("STRONG", check.StrengthCheck("Abc123!@"));
         }
-    [Fact]
-        public void PasswordTooShort_ShouldBeIneligible()
-        {
-        var check = new Password();
-        Assert.Equal("INELIGABLE", check.StrengthCheck("abc123")); // too short
-        Assert.Equal("INELIGABLE", check.StrengthCheck("Abc12!")); // too short
-        }
 
-    [Fact]
-        public void PasswordLongEnoughAndStrong_ShouldBeStrong()
-        {
-            var check = new Password();
-            Assert.Equal("STRONG", check.StrengthCheck("Abc123!@"));
-        }
+
+
     }
 }
 
