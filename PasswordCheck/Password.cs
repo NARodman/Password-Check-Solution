@@ -10,17 +10,17 @@ namespace PasswordCheck
     public class Password
 
     /// <summary>
-        /// Checks the strength of a given password.
-        /// Evaluates based on presence of uppercase, lowercase, digits, symbols,
-        /// and a minimum length of 8 characters.
-        /// </summary>
-        /// <param name="password">The password string to evaluate.</param>
-        /// <returns>
-        /// "INELIGABLE" if password field is empty or less than 8 characters,
-        /// "WEAK" if only one category is met,
-        /// "MEDIUM" if two or three categories are met,
-        /// "STRONG" if all categories are met.
-        /// </returns>
+    /// Checks the strength of a given password.
+    /// Evaluates based on presence of uppercase, lowercase, digits, symbols,
+    /// and a minimum length of 8 characters.
+    /// </summary>
+    /// <param name="password">The password string to evaluate.</param>
+    /// <returns>
+    /// "INELIGABLE" if password field is empty or less than 8 characters,
+    /// "WEAK" if only one category is met,
+    /// "MEDIUM" if two or three categories are met,
+    /// "STRONG" if all categories are met.
+    /// </returns>
     {
         public string StrengthCheck(string password)
         {
@@ -28,7 +28,7 @@ namespace PasswordCheck
                 return "INELIGABLE";
 
             if (password.Length < 8)
-                    return "INELIGABLE";
+                return "INELIGABLE";
 
             bool hasUpper = false;
             bool haslower = false;
@@ -58,9 +58,12 @@ namespace PasswordCheck
             else
                 return "STRONG";
 
-                
+        }
 
 
+        public string GenerateUUID()
+        {
+            return Guid.NewGuid().ToString();
         }
 
     }
