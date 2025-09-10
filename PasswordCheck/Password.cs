@@ -61,6 +61,15 @@ namespace PasswordCheck
         }
 
 
+        /// <summary>
+        /// Generates a UUIDv4 string using .NET's built in Guid.NewGuid() method. 
+        /// This method ensures a high standard of randomness and uniqueness.
+        /// </summary>
+        /// <returns>
+        /// A string representation of a UUIDv4 in 8-4-4-4-12 format. 
+        /// For example: "3f2504a0-4f89-41d3-9a0c-0315e82c3321".
+        /// </returns>
+
         public string GenerateUUID()
         {
             return Guid.NewGuid().ToString();
