@@ -1,5 +1,6 @@
 ﻿using Xunit;
 using PasswordCheck;
+using Xunit.Sdk;
 
 
 namespace PasswordCheck.Tests
@@ -8,6 +9,9 @@ namespace PasswordCheck.Tests
 
     public class UnitTest1
     {
+
+        //Strength Check Tests
+
         [Fact]
         public void EmptyPassword_ReturnsInvalid()
         {
@@ -76,6 +80,26 @@ namespace PasswordCheck.Tests
         {
             var check = new Password();
             Assert.Equal("STRONG", check.StrengthCheck("Abc123!@"));
+        }
+
+        // GenerateUUIDv4 tests
+        [Fact]
+        public void GenerateUUID_ReturnsValid()
+        {
+            var check = new Password();
+            string uuid = check.GenerateUUID();
+
+            Assert.True(Guid.TryParse(uuid, out Guid result));
+        }
+
+        [Fact]
+        public void GenerateUUID_ReturnsDifferent()
+        {
+            var check = new Password();
+            string uuid1 = check.GenerateUUID();
+            string uuid2 = check.GenerateUUID();
+
+            Assert.NotEqual(uuid1, uuid2);
         }
 
 
